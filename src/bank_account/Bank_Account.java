@@ -14,10 +14,10 @@ public class Bank_Account {
         
         newSavings.showInfo();
         
-        newSavings.deposit();
-        newSavings.showInfo();
+        newSavings.compound();
         
-        newSavings.withdrawal();
+        
+        
         newSavings.showInfo();
     }
     

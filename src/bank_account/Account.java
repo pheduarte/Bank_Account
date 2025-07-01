@@ -9,9 +9,9 @@ public abstract class Account {
     //Properties for all accounts
     final String accName;
     protected double balance;
-    final String tfn;
-    
+    final String tfn;    
     protected String accNumber;
+    public double baseRate = 0.0485;
     
     //Create a constructor to set up the account
     protected Account() {
@@ -46,25 +46,31 @@ public abstract class Account {
             return "XXXPH" + firstThree + randNumb ;
         }
     
+    //Implement deposit capability
     public void deposit(){
-        System.out.println("Plese informe the deposit amount: ");
-        
+        System.out.println("Plese informe the deposit amount: ");        
         Scanner scanner = new Scanner(System.in);
                
         balance += scanner.nextDouble();
     }
     
+    //Implement withdrawal capability
     public void withdrawal(){
-        System.out.println("Plese informe the amount you want to withdraw: ");
+        double value;
         
+        System.out.println("Plese informe the amount you want to withdraw: ");        
         Scanner scanner = new Scanner(System.in);
-               
-        balance -= scanner.nextDouble();
+        
+        //Validate the notes available for the requested amount
+        value = scanner.nextDouble();
+        if (value % 20 == 0 || value % 50 == 0 || value % 100 == 0) {
+            System.out.println("Take your money");
+        } else {
+            System.out.println("Only $20, $50, and $100 notes available from this ATM.");
+        }
     }
     
-    public void showInfo() {
-        System.out.println("Account: " + accName + " Number: " + accNumber + " Balance: $" + balance);
-    }
+    public abstract void showInfo();
     
-    
+    public abstract void compound();
 }
