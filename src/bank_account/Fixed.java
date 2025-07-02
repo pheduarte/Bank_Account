@@ -5,7 +5,7 @@ package bank_account;
 public class Fixed extends Account {
    @Override
    public void showInfo(){
-    System.out.println("Fixed account: " + accName + " Number: " + accNumber + " Balance: $" + balance);  
+    System.out.println("Fixed account balance: $" + balance);  
    }
    
    @Override
@@ -13,3 +13,5 @@ public class Fixed extends Account {
        balance *= Math.pow(1 + baseRate, 30.0 / 365);
     }
 }
+
+
