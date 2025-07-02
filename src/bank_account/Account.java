@@ -6,82 +6,48 @@ import java.util.Scanner;
 
 public abstract class Account {
 
-//    private static int index = 1000;
-
     // Properties for all accounts
-//    final String accName;
     protected double balance = 0;
-//    final String tfn;
     protected String accNumber;
     public double baseRate = 0.0485;
 
-    // Create a constructor to set up the account
-    protected Account() {
-//        index++;
-//
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("To create a new account, please type your name: ");
-//        accName = scanner.nextLine();
-//
-//        // Prompts the user for initial deposit
-//        Scanner scanner2 = new Scanner(System.in);
-//        System.out.println("Enter the initial deposit: ");
-//        balance = scanner2.nextDouble();
-//
-//        // Prompts the user for tfn number
-//        Scanner scanner3 = new Scanner(System.in);
-//        System.out.println("Type your tfn number: ");
-//        tfn = scanner3.nextLine();
-//
-//        // Set account number
-//        accNumber = genAccNumber();
-//        
-//        System.out.println("*******************************************");
-//        System.out.println("Account created");
-//        System.out.println("*******************************************");
-    }
-
-    // Generate account number
-//    private String genAccNumber() {
-//
-//        // Get a 3 digits random number
-//        int randNumb = (int) (Math.random() * 1000);
-//
-//        // Get the first 3 digits of TFN
-//        String firstThree = tfn.substring(0, 3);
-//
-//        return index + firstThree + randNumb;
-//    }
-
-    // Implement deposit capability
-    public void deposit() {
+    //Implement deposit capability
+    public void deposit(Scanner scanner) {
         System.out.println("Plese informe the deposit amount: ");
-        Scanner scanner = new Scanner(System.in);
-
         balance += scanner.nextDouble();
+        System.out.println("Your new balance: " + balance);
     }
 
-    // Implement withdrawal capability
-    public void withdrawal() {
+    //Implement withdrawal capability
+    public void withdrawal(Scanner scanner) {
         double value;
-
+        
         System.out.println("Plese informe the amount you want to withdraw: ");
-        Scanner scanner = new Scanner(System.in);
+        
+        value = scanner.nextDouble();
+        scanner.nextLine(); //Clear scanner
+        
+        //Check if the balance is sufficient
+        if (value > balance) {
+            System.out.println("Insufficient balance");
+            return;
+        }
 
-        try {
-            // Validate the notes available for the requested amount
-            value = scanner.nextDouble();
+        //Check if the available notes 20, 50, or 100
             if (value % 20 == 0 || value % 50 == 0 || value % 100 == 0) {
                 System.out.println("Take your money");
             } else {
                 System.out.println("Only $20, $50, and $100 notes available from this ATM.");
             }
-        } finally {
-            scanner.close();
-        }
+            
+            balance -= value;
+            
+            System.out.println("Your new balance: " + balance);
     }
 
+    //Display account information
     public abstract void showInfo();
 
+    //Calculate compound interest
     public abstract void compound();
 }
