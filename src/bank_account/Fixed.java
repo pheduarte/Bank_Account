@@ -13,7 +13,8 @@ public class Fixed extends Account {
    @Override
     public double compound() {
         double bonus = 0.0100;
-       return Math.pow(1 + (baseRate + bonus), 180 / 365);
+       // ensure the exponent is calculated using floating point division
+       return Math.pow(1 + (baseRate + bonus), 180.0 / 365);
     }
    
     @Override
