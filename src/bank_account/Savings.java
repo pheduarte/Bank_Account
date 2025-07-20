@@ -13,7 +13,8 @@ public class Savings extends Account {
    // Calculate compound interest
    @Override
    public double compound() {
-      return Math.pow(1 + baseRate, 1 / 365);
+      // use floating point division to avoid integer rounding
+      return Math.pow(1 + baseRate, 1.0 / 365);
    }
    
     @Override
